@@ -7,57 +7,70 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">gCamp</a>
+        <a class="navbar-brand" href="/">gCamp</a>
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <form class="navbar-form navbar-right">
-          <div class="form-group">
-            <input type="text" placeholder="Email" class="form-control">
-          </div>
-          <div class="form-group">
-            <input type="password" placeholder="Password" class="form-control">
-          </div>
-          <button type="submit" class="btn btn-success">Sign in</button>
-        </form>
-      </div><!--/.navbar-collapse -->
     </div>
-  </nav>
+  </div>
 
   <div class="container">
     <%= yield %>
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
-        <h2><img src="../../dude.jpg"/></h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <p class="lead">
+          <img alt="Panel1" class="img-responsive" <%= image_tag('dude.jpg') %>
+        </p>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Tasks</div>
+          <div class="panel-body home-panel">
+            <p>Grouped by projects and lists, just the way you like'em</p>
+          </div>
+        </div>
       </div>
       <div class="col-md-4">
-        <h2>Topic 2</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <p class="lead">
+          <img alt="Panel2" class="img-responsive" <%= image_tag('pen.jpg') %>
+        </p>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Documents</div>
+          <div class="panel-body home-panel">
+            <ul>
+              <li>Upload</li>
+              <li>Comment</li>
+              <li>Revise</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="col-md-4">
-        <h2>Topic </h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <p class="lead">
+          <img alt="Panel3" class="img-responsive" <%= image_tag('headphones_dude.jpg') %>
+        </p>
+        <div class="panel panel-primary">
+          <div class="panel-heading">Comments</div>
+          <div class="panel-body home-panel">
+            <ul>
+              <li>Comment on tasks and documents</li>
+              <li>Get email notifications</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-
     <hr>
 
-    <footer>
-      <p>&copy; Company 2014</p>
-    </footer>
+    <p>&ldquo;gCamp has changed my life!  It&#39;s the best tool I&#39;ve ever used.&rdquo;</p>
+    <p class="text-muted"><em>&mdash; Cayla Hayes</em></p>
+    <p>&ldquo;Before gCamp I was a disorderly slob.  Now I&#39;m more organized than I&#39;ve ever been&rdquo;</p>
+    <p class="text-muted"><em>&mdash; Leta Jaskolski</em></p>
+    <p>&ldquo;Don&#39;t hesitate - sign up right now! You&#39;ll never be the same.&rdquo;</p>
+    <p class="text-muted"><em>&mdash; Lavern Upton</em></p>
+
+
   </div> <!-- /container -->
 
 
