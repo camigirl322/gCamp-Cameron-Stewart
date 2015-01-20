@@ -1,88 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>GCampCameronStewart</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>GCampCameronStewart</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">gCamp</a>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">gCamp</a>
-      </div>
-    </div>
-  </div>
+      <%= yield %>
+      
 
-  <div class="container">
-    <%= yield %>
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <p class="lead">
-          <img alt="Panel1" class="img-responsive" <%= image_tag('dude.jpg') %>
-        </p>
-        <div class="panel panel-primary">
-          <div class="panel-heading">Tasks</div>
-          <div class="panel-body home-panel">
-            <p>Grouped by projects and lists, just the way you like'em</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <p class="lead">
-          <img alt="Panel2" class="img-responsive" <%= image_tag('pen.jpg') %>
-        </p>
-        <div class="panel panel-primary">
-          <div class="panel-heading">Documents</div>
-          <div class="panel-body home-panel">
-            <ul>
-              <li>Upload</li>
-              <li>Comment</li>
-              <li>Revise</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <p class="lead">
-          <img alt="Panel3" class="img-responsive" <%= image_tag('headphones_dude.jpg') %>
-        </p>
-        <div class="panel panel-primary">
-          <div class="panel-heading">Comments</div>
-          <div class="panel-body home-panel">
-            <ul>
-              <li>Comment on tasks and documents</li>
-              <li>Get email notifications</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr>
+    </div> <!-- /container -->
 
-    <p>&ldquo;gCamp has changed my life!  It&#39;s the best tool I&#39;ve ever used.&rdquo;</p>
-    <p class="text-muted"><em>&mdash; Cayla Hayes</em></p>
-    <p>&ldquo;Before gCamp I was a disorderly slob.  Now I&#39;m more organized than I&#39;ve ever been&rdquo;</p>
-    <p class="text-muted"><em>&mdash; Leta Jaskolski</em></p>
-    <p>&ldquo;Don&#39;t hesitate - sign up right now! You&#39;ll never be the same.&rdquo;</p>
-    <p class="text-muted"><em>&mdash; Lavern Upton</em></p>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
-
-  </div> <!-- /container -->
-
-
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="../../dist/js/bootstrap.min.js"></script>
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
-
-</body>
+  </body>
 </html>
