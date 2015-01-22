@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>GCampCameronStewart</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -16,12 +16,23 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="top">
       <%= yield %>
-      
-
+      <hr>
+      <footer>
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to "About", about_path %>
+            |
+            <%= link_to "Terms", terms_path %>
+            |
+            <%= link_to "FAQ", faq_path %>
+            <!-- |
+            <%= link_to "Tasks", tasks_path %> -->
+          </div>
+        </div>
+      </footer>
     </div> <!-- /container -->
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
