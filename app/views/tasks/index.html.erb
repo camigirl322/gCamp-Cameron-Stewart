@@ -1,5 +1,6 @@
-<p class="alert alert-success" id="notice"><%= notice %></p>
-
+<% if notice %>
+<p class="alert alert-success" id="notice"><%= notice  %></p>
+<% end %>
 <div class="page-header">
   <div class="pull-right">
     <a class="btn btn-info" href="/tasks/new">New Task</a>
