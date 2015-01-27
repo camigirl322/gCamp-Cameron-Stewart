@@ -19,13 +19,13 @@
     </div>
   </div>
 </div>
-<!--
+
 <div class="form-group">
-  <div class="field">
-    <%= f.label :due_date %><br>
-    <%= f.date_select :due_date %>
+    <%= f.label :due_date, :class => 'control-label col-md-2' %>
+    <div class="col-md-4">
+    <%= f.date_select :due_date, :class => 'form-control' %>
   </div>
-</div> -->
+</div>
 <% unless @task.description == nil %>
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4">
