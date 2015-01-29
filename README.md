@@ -1,6 +1,6 @@
 # gCamp
 
-[View on Heroku] (https://pure-fjord-2386.herokuapp.com/)
+[View on Heroku] (https://pure-fjord-2386.herokuapp.com/) <br/>
 [View on GitHub] (https://github.com/cwstewart/gCamp-Cameron-Stewart)
 
 
