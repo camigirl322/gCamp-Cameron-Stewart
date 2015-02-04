@@ -1,0 +1,16 @@
+<% if notice %>
+
+<p class="alert alert-success" id="notice"><%= notice  %></p>
+<% end %>
+
+<div class="page-header">
+  <div class="pull-right">
+
+  </div>
+  <h1><%= @user.first_name %></h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><a href="/users">Users</a></li>
+  <li class="active">New User</li>
+</ol>
