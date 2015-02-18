@@ -1,15 +1,5 @@
 <%= form_for(@user, html: {:class => "form-horizontal"})  do |f| %>
-<% if @user.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
+<%= render partial: "/shared/errors", locals: {object: @user} %>
 
   <div class="form-group">
     <div class="field">
@@ -36,7 +26,7 @@
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-4">
-      <% if @user.first_name == nil %>
+      <% if @user.id == nil %>
         <%= f.submit 'Create User', :class => 'btn btn-primary' %>
         <a class="btn btn-default" href="/users">Cancel</a>
       <% else %>

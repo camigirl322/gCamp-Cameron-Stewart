@@ -1,15 +1,6 @@
 <%= form_for(@task, html: {:class => "form-horizontal"})  do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render partial: "/shared/errors", locals: {object: @task} %>
 
 <div class="form-group">
   <div class="field">
@@ -26,19 +17,26 @@
     <%= f.date_select :due_date, :class => 'form-control' %>
   </div>
 </div>
-<% unless @task.description == nil %>
+<% unless @task.id == nil %>
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4">
     <%= f.check_box :complete %>
     <%= f.label :complete %>
   </div>
 </div>
-
 <% end %>
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4">
-      <%= f.submit 'Create Task', :class => 'btn btn-primary' %>
-      <a class="btn btn-default" href="/tasks">Cancel</a>
+    <% if @task.id == nil %>
+    <%= f.submit 'Create Task', :class => 'btn btn-primary' %>
+    <a class="btn btn-default" href="/users">Cancel</a>
+    <% else %>
+    <%= f.submit 'Update Task', :class => 'btn btn-primary' %>
+    <%= link_to 'Delete Task', @task, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <a class="btn btn-default" href="/users">Cancel</a>
+    <% end %>
+
   </div>
 </div>
+
 <% end %>
