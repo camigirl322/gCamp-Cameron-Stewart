@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pg'
 gem 'pry-rails'
 
+gem 'rspec-rails'
+gem 'capybara'
+gem 'better_errors'
+
 group :production do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rails_12factor'
