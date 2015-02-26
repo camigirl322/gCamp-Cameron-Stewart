@@ -67,4 +67,13 @@ describe "User can log in" do
     click_button 'Sign In'
     expect(page).to have_content "Username/password combination is invalid"
   end
+
+  it "user can sign out" do
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
+    click_button 'Sign In'
+    expect(page).to have_content "#{@user.first_name} #{@user.last_name}"
+    click_link "Sign Out"
+    expect(page).to have_content "Sign Up | Sign In"
+  end
 end
