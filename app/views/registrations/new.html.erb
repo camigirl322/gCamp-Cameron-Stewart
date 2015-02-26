@@ -1,46 +1,50 @@
-<div class="page-header">
+<div class="col-md-offset-3">
+  <div class="col-md-6">
+    <div class="well">
   <h1>Sign up for gCamp!</h1>
-</div>
-<%= form_for(@user, html: {:class => "form-horizontal"}, url: signup_path) do |f| %>
 
-<%= render partial: "/shared/errors", locals: {object: @user} %>
+  <%= form_for(@user, html: {:class => "form-horizontal"}, url: signup_path) do |f| %>
 
-<div class="form-group">
-  <%= f.label :first_name, :class => 'control-label col-md-2' %>
-  <div class="col-md-4">
+  <% if @user.errors.any? %>
+  <div id="error_explanation" class="sign-up-error">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :first_name, :class => 'control-label' %>
     <%= f.text_field :first_name, :class => 'form-control' %>
+
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :last_name, :class => 'control-label col-md-2' %>
-  <div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :last_name, :class => 'control-label' %>
     <%= f.text_field :last_name, :class => 'form-control' %>
+
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :email, :class => 'control-label col-md-2' %>
-  <div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :email, :class => 'control-label' %>
     <%= f.email_field :email, :class => 'form-control' %>
+
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :password, :class => 'control-label col-md-2' %>
-  <div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :password, :class => 'control-label' %>
     <%= f.password_field :password, :class => 'form-control' %>
   </div>
-</div>
-<div class="form-group">
-  <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
-  <div class="col-md-4">
+  <div class="form-group">
+    <%= f.label :password_confirmation, :class => 'control-label' %>
     <%= f.password_field :password_confirmation, :class => 'form-control' %>
   </div>
-</div>
 
 
-<div class="form-group">
-  <div class="col-md-offset-2 col-md-4">
-    <%= f.submit "Sign up", class: 'btn btn-primary' %>
+  <div class="form-group">
+      <%= f.submit "Sign up", class: 'btn btn-primary' %>
   </div>
-</div>
 
-<% end %>
+  <% end %>
+</div>
+</div>
+</div>
