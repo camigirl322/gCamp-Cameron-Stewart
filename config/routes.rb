@@ -1,20 +1,9 @@
 Rails.application.routes.draw do
-  resources :tasks
-  resources :users
-  resources :projects
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  # This is a comment! No one will see me!!!!
-
-  # Example of regular route:
   get 'faq' => 'common_questions#index'
   get 'about' => 'about#index'
   get 'terms' => 'terms#index'
-  get 'tasks' => 'tasks#index'
   get 'users' => 'users#index'
 
   get '/sign-up' => 'registrations#new', as: :signup
@@ -22,6 +11,11 @@ Rails.application.routes.draw do
   get '/sign-in' => 'authentication#new', as: :signin
   post '/login' => 'authentication#create'
   get '/sign-out' => 'authentication#destroy', as: :signout
+
+  resources :users
+  resources :projects do
+    resources :tasks
+  end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

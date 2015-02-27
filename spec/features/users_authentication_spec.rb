@@ -13,7 +13,7 @@ describe 'User can sign up' do
     fill_in 'Password', with: '123'
     fill_in 'Password confirmation', with: '123'
     click_button 'Sign up'
-    expect(page).to have_content 'cam stew'
+    expect(page).to have_content 'You have successfully signed up'
   end
 
   it "user must enter first name and last name to sign up" do

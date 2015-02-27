@@ -1,4 +1,4 @@
-s<%= form_for(@task, html: {:class => "form-horizontal"})  do |f| %>
+s<%= form_for([@project, @task], html: {:class => "form-horizontal"})  do |f| %>
 
 <%= render partial: "/shared/errors", locals: {object: @task} %>
 
@@ -28,12 +28,12 @@ s<%= form_for(@task, html: {:class => "form-horizontal"})  do |f| %>
 <div class="form-group">
   <div class="col-md-offset-2 col-md-4">
     <% if @task.id == nil %>
-    <%= f.submit 'Create Task', :class => 'btn btn-primary' %>
-    <a class="btn btn-default" href="/users">Cancel</a>
+      <%= f.submit 'Create Task', :class => 'btn btn-primary' %>
+      <a class="btn btn-default" href="/projects">Cancel</a>
     <% else %>
-    <%= f.submit 'Update Task', :class => 'btn btn-primary' %>
-    <%= link_to 'Delete Task', @task, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-    <a class="btn btn-default" href="/users">Cancel</a>
+      <%= f.submit 'Update Task', :class => 'btn btn-primary' %>
+      <%= link_to 'Delete Task', project_task_path(@project, @task), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <a class="btn btn-default" href="/projects">Cancel</a>
     <% end %>
 
   </div>
