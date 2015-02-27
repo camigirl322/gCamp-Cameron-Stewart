@@ -23,6 +23,8 @@ describe 'User can CRUD users' do
     fill_in 'First name', with: 'User FName'
     fill_in 'Last name', with: 'User LName'
     fill_in 'Email', with: 'cameron.webster@test.com'
+    fill_in 'Password', with: 'pass'
+    fill_in 'Password confirmation', with: 'pass'
     click_button 'Create User'
     expect(page).to have_content 'Users'
   end
