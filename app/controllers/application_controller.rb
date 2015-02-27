@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
      if current_user.nil?
-       redirect_to signin_path
+       redirect_to signin_path, notice: "You must sign in"
      end
   end
 end
