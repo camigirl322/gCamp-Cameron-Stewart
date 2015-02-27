@@ -19,8 +19,8 @@
   <dd><%= @project.name %></dd>
 </dl>
 
-<% if @project.tasks.count >= 2 %>
-  <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
-<% else %>
+<% if @project.tasks.count == 1 %>
   <%= link_to "#{@project.tasks.count} task", project_tasks_path(@project) %>
+<% else %>
+  <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
 <% end %>
