@@ -1,5 +1,9 @@
 <html>
 <!-- Main jumbotron for a primary marketing message or call to action -->
+<% if notice %>
+  <p class="alert alert-success" id="notice"><%= notice  %></p>
+<% end %>
+
 <div class="jumbotron">
   <div class="container">
     <h1>gCamp</h1>
