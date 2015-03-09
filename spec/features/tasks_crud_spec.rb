@@ -3,7 +3,11 @@ require 'rails_helper'
 describe 'User can CRUD tasks' do
 
   before :each do
-    @user = User.create(first_name: "Cameron", last_name: "Stew", email: "cam@awesome.com", password: "awesome", password_confirmation: "awesome")
+    @user = User.create(first_name: "Cameron",
+                        last_name: "Stew",
+                        email: "cam@awesome.com",
+                        password: "awesome",
+                        password_confirmation: "awesome")
     visit root_path
     click_link 'Sign In'
     fill_in 'Email', with: @user.email

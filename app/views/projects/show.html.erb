@@ -24,3 +24,6 @@
 <% else %>
   <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
 <% end %>
+
+<br/>
+<%= link_to "#{@project.users.count} members", project_memberships_path(@project) %>
