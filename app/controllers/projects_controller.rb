@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_filter :authorize, only: [:index, :show]
-  
+
   def index
     @projects = Project.all
   end
@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-
   end
 
   def create
