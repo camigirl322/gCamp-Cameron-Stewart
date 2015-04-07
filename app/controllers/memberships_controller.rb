@@ -20,8 +20,6 @@ class MembershipsController < ApplicationController
     end
   end
 
-
-
   def update
     @membership = Membership.find(params[:id])
       if @membership.update(membership_params)
@@ -30,7 +28,6 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:project_id])
     @membership = Membership.find(params[:id])
     @membership.project_id = @project.id
     @membership.destroy
