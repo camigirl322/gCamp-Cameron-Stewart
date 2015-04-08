@@ -11,13 +11,21 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = @project.memberships.build(membership_params)
+    @membership = Membership.new
+    @membership.user_id = params[:membership][:user_id]
     @membership.project_id = @project.id
-    if @membership.save
-      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully added"
-    else
-      render :index
+
+
+    respond_to do |format|
+      if @membership.save
+        format.html { redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was successfully added" }
+        format.json { render :index, status: :created, location: @project }
+      else
+        format.html { render :index }
+        format.json { render json: @membership.errors, status: :unprocessable_entity }
+      end
     end
+
   end
 
   def update
