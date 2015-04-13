@@ -1,3 +1,5 @@
+require 'Date'
+
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_project
@@ -12,6 +14,10 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @comments = Comment.where(:task_id => @task.id)
+    @comment = Comment.new
   end
 
   # GET /tasks/new
