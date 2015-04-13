@@ -15,12 +15,17 @@
 
 
 
-<!-- <p>
-  <strong>Due date:</strong>
-  <%= @task.due_date %>
+<p>
+  <strong>Due on:</strong>
+  <%= @task.due_date.strftime("%m/%d/%Y") %>
+
 </p>
 
-<p>
+<!-- <p>
   <strong>Complete:</strong>
-  <%= @task.complete %>
+  <%= @task.complete? %>
 </p> -->
+<h2>Comments</h2>
+<div class="col-md-3">
+
+</div>
