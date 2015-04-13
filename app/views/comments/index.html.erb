@@ -1,0 +1,25 @@
+<% @comments.each do |comment| %>
+  <div class="row">
+    <div class="col-md-3">
+    <%= link_to User.find(comment.user_id).full_name, user_path(comment.user_id) %><br>
+    <div class="text-muted">
+      <%= time_ago_in_words(comment.created_at) %> ago
+    </div>
+    </div>
+    <div class="col-md-9">
+      <%= comment.description %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-offset-3 col-md-9">
+    <%= form_for([@project,@task, @comment]) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :description, size: "70x5" %>
+    </div>
+
+    <%= f.submit class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
