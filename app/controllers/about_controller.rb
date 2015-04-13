@@ -4,6 +4,6 @@ class AboutController < ApplicationController
     @tasks = Task.all.count
     @memberships = Membership.all.count
     @users = User.all.count
-    # @comments = Comment.all.count
+    @comments = Comment.all.count
   end
 end
