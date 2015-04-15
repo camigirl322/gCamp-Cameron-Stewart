@@ -10,7 +10,7 @@
   </ol>
   <div class="pull-right">
     <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
-    <%= link_to 'Delete', @project, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+
   </div>
   <h1><%= @project.name %></h1>
 </div>
@@ -24,3 +24,11 @@
 
 <br/>
 <%= link_to "#{@project.users.count} members", project_memberships_path(@project) %>
+
+<div class="well">
+    <h4>Delete</h4>
+    <div>
+      Deleting this project will also delete <%= @project.memberships.count %> memberships, <%= @project.tasks.count %> tasks and associated comments.
+    </div>
+    <%= link_to 'Delete', @project, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
