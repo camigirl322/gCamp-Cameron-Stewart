@@ -1,67 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>gCamp Cameron Stewart</title>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= favicon_link_tag 'cami.jpg' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">gCamp</a>
+<head>
+  <title>gCamp Cameron Stewart</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= favicon_link_tag 'cami.jpg' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">gCamp</a>
+        <% if current_user %>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <% current_user.projects.each do |project| %>
+                  <li> <%= link_to project.name, project_path(project) %> </li>
+                  <% end %>
+                  <li role="presentation" class="divider"></li>
+                  <li><%= link_to "New Project", new_project_path %></li>
+                </ul>
+              </li>
+            <% end %>
+        </ul>
+      </div>
+      <div class="navbar-right">
+        <div class="navbar-nav">
+          <ul class="nav navbar-brand">
+            <% if current_user %>
+            <%= link_to current_user.full_name, user_path(current_user) %>
+            <%= link_to "Sign Out", signout_path %>
+            <% else %>
+            <%= link_to "Sign Up", signup_path %>
+            |
+            <%= link_to "Sign In", signin_path %>
+            <% end %>
+          </ul>
         </div>
-
-        <div class="navbar-right">
-            <div class="navbar-nav">
-                <ul class="nav navbar-brand">
-              <% if current_user %>
-                <%= link_to current_user.full_name, user_path(current_user) %>
-                <%= link_to "Sign Out", signout_path %>
-              <% else %>
-                <%= link_to "Sign Up", signup_path %>
-                |
-                <%= link_to "Sign In", signin_path %>
-              <% end %>
-            </ul>
-            </div>
-          </div>
       </div>
     </div>
-    <div class="container" id="top">
-      <%= yield %>
-    </div>
-    <div class="container">
-      <hr>
-      <footer>
-        <div class="row">
-          <div class="col-md-6">
-            <%= link_to "About", about_path %>
-            |
-            <%= link_to "Terms", terms_path %>
-            |
-            <%= link_to "FAQ", faq_path %>
-            <% if current_user %>
-              |
-              <%= link_to "Users", users_path %>
-              |
-              <%= link_to "Projects", projects_path %>
-            <% end %>
-          </div>
-          <div class="links">
-            <a href="http://www.linkedin.com/in/cameronwstewart" target="_blank"><%=  image_tag('linked_in.jpg') %></a>
-            <a href="https://github.com/cwstewart" target="_blank"><%=  image_tag('GitHub.png') %></a>
-            <a href="https://twitter.com/cws322" target="_blank"><%=  image_tag('Twitter.png') %></a>
-            <a href="https://students.gschool.it/students/200" target="_blank"><%=  image_tag('galvanize-g.png') %></a>
-          </div>
+  </div>
+  <div class="container" id="top">
+    <%= yield %>
+  </div>
+  <div class="container">
+    <hr>
+    <footer>
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to "About", about_path %>
+          |
+          <%= link_to "Terms", terms_path %>
+          |
+          <%= link_to "FAQ", faq_path %>
+          <% if current_user %>
+          |
+          <%= link_to "Users", users_path %>
+          |
+          <%= link_to "Projects", projects_path %>
+          <% end %>
         </div>
-      </footer>
-    </div> <!-- /container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  </body>
+        <div class="links">
+          <a href="http://www.linkedin.com/in/cameronwstewart" target="_blank"><%=  image_tag('linked_in.jpg') %></a>
+          <a href="https://github.com/cwstewart" target="_blank"><%=  image_tag('GitHub.png') %></a>
+          <a href="https://twitter.com/cws322" target="_blank"><%=  image_tag('Twitter.png') %></a>
+          <a href="https://students.gschool.it/students/200" target="_blank"><%=  image_tag('galvanize-g.png') %></a>
+        </div>
+      </div>
+    </footer>
+  </div> <!-- /container -->
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</body>
 </html>
