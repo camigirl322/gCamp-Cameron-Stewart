@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :owner, only: [:show, :update]
+  # before_action :owner, only: [:show, :update]
   before_filter :authorize, only: [:index, :show]
 
   def index
@@ -8,6 +8,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    unless @project.users.include? current_user
+        redirect_to projects_path, alert: "You do not have access to that project"
+    end
   end
 
   def new
@@ -35,7 +38,9 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-
+    unless @project.users.include? current_user
+        redirect_to projects_path, alert: "You do not have access to that project"
+    end
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }

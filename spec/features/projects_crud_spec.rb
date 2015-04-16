@@ -28,6 +28,8 @@ describe "user can CRUD projects" do
 
   it 'User can edit existing project' do
     @project = Project.create(name: 'Sweet Project')
+    @project.user_ids = @user.id
+    @project.save
     visit("/projects/#{@project.id}/edit")
     expect(page).to have_content 'Edit Project'
     fill_in 'Name', with: 'Sweeter Project'
