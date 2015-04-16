@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :set_project
+  before_action :set_project, :owner
 
   def index
     @memberships = Membership.all
@@ -50,5 +50,11 @@ class MembershipsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def owner
+    unless @project.users.include? current_user
+        redirect_to projects_path, alert: "You do not have access to that project"
+    end
   end
 end
