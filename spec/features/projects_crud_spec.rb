@@ -27,20 +27,34 @@ describe "user can CRUD projects" do
   end
 
   it 'User can edit existing project' do
-    @project = Project.create(name: 'Sweet Project')
-    @project.user_ids = @user.id
-    @project.save
-    visit("/projects/#{@project.id}/edit")
-    expect(page).to have_content 'Edit Project'
-    fill_in 'Name', with: 'Sweeter Project'
-    click_button 'Update Project'
-    expect(page).to have_content 'Project was successfully updated.'
+    visit("/projects")
+    within('.pull-right') do
+      click_link 'New Project'
+    end
+      expect(page).to have_content 'Create Project'
+      fill_in 'Name', with: 'Awesome Project!'
+      click_button 'Create Project'
+      expect(page).to have_content 'Project was successfully created.'
+      within('.breadcrumb') do
+        click_link 'Awesome Project!'
+      end
+      expect(page).to have_content 'Edit'
   end
 
   it "User can delete existing project" do
-    @project = Project.create(name: 'Sweet Project')
-    visit("/projects/#{@project.id}/edit")
-    click_link 'Delete Project'
-    expect(page).to have_content 'Project was successfully deleted'
+    visit("/projects")
+    within('.pull-right') do
+      click_link 'New Project'
+    end
+      expect(page).to have_content 'Create Project'
+      fill_in 'Name', with: 'Awesome Project!'
+      click_button 'Create Project'
+      expect(page).to have_content 'Project was successfully created.'
+      within('.breadcrumb') do
+        click_link 'Awesome Project!'
+      end
+      expect(page).to have_content 'Delete'
+      click_link 'Delete'
+      expect(page).to have_content 'Project was successfully deleted'
   end
 end

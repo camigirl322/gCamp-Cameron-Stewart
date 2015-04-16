@@ -8,7 +8,7 @@
     <li><a href="/projects">Projects</a></li>
     <li class="active"><%= @project.name %></li>
   </ol>
-  <% if @membership.role == 'owner' %>
+  <% if current_user.owner?(@project) %>
     <div class="pull-right">
       <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
     </div>
@@ -27,7 +27,7 @@
 <%= link_to "#{@project.users.count} members", project_memberships_path(@project) %>
 
 
-<% if @membership.role == 'owner' %>
+<% if current_user.owner?(@project) %>
 <div class="well">
   <h4>Delete</h4>
   <div>
