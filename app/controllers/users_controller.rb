@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :authorize, only: [:index, :show]
-  
+
   def index
     @users = User.all
   end
@@ -31,11 +31,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      render_404
+    end
   end
 
   def update
     @user = User.find(params[:id])
-
+    if @user == current_user
       respond_to do |format|
         if @user.update(user_params)
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -45,6 +48,9 @@ class UsersController < ApplicationController
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
+    else
+      render_404
+    end
   end
 
   def destroy
@@ -58,5 +64,13 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
   end
 end
