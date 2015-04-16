@@ -1,5 +1,5 @@
 <% if notice %>
-  <p class="alert alert-success" id="notice"><%= notice  %></p>
+<p class="alert alert-success" id="notice"><%= notice  %></p>
 <% end %>
 
 <div class="page-header">
@@ -11,10 +11,10 @@
   </ol>
 </div>
 <%= render partial: "/shared/errors", locals: {object: @membership} %>
+<% if current_user.owner?(@project) %>
 <div class="well form-inline">
 
-
-<%= form_for [@project, @membership] do |f| %>
+  <%= form_for [@project, @membership] do |f| %>
 
   <div class="form-group">
     <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: true, include_blank: true}, {class: "form-control"}) %>
@@ -24,20 +24,34 @@
   </div>
 
   <%= f.submit 'Add a new member', :class => 'btn btn-primary'%>
-<% end %>
+  <% end %>
 </div>
 
-<% @project.memberships.each do |membership| %>
-<%= form_for([@project, membership], html: {:class => "form-inline"}) do |f| %>
-    <div class="form-group col-md-2">
-        <%= link_to membership.user.full_name, user_path(membership.user), class: "control-label" %>
-      </div>
-    <div class="form-group col-md-2">
-      <%= f.select(:role, [["Member", :member],["Owner", :owner]], {include_blank: false}, {class: "form-control"}) %>
-    </div>
 
-    <%= f.submit 'Update', :class => 'btn btn-primary'%>
-    <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden=true></span>'.html_safe, project_membership_path(@project, membership), method: :delete, data: { confirm: "Are you sure you want to delete that?"} %>
-    <br/>
+<% @project.memberships.each do |membership| %>
+  <%= form_for([@project, membership], html: {:class => "form-inline"}) do |f| %>
+  <div class="form-group col-md-2">
+    <%= link_to membership.user.full_name, user_path(membership.user), class: "control-label" %>
+  </div>
+  <div class="form-group col-md-2">
+    <%= f.select(:role, [["Member", :member],["Owner", :owner]], {include_blank: false}, {class: "form-control"}) %>
+  </div>
+
+  <%= f.submit 'Update', :class => 'btn btn-primary'%>
+  <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden=true></span>'.html_safe, project_membership_path(@project, membership), method: :delete, data: { confirm: "Are you sure you want to delete that?"} %>
+  <br/>
   <% end %>
+<% end %>
+<% else %>
+  <table class="table">
+    <tbody>
+      <% @project.memberships.each do |membership| %>
+      <tr>
+        <td>
+          <%= membership.user.full_name %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
