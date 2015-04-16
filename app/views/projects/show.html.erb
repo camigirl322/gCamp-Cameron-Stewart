@@ -8,27 +8,31 @@
     <li><a href="/projects">Projects</a></li>
     <li class="active"><%= @project.name %></li>
   </ol>
-  <div class="pull-right">
-    <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
-
-  </div>
+  <% if @membership.role == 'owner' %>
+    <div class="pull-right">
+      <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
+    </div>
+  <% end %>
   <h1><%= @project.name %></h1>
 </div>
 
 
 <% if @project.tasks.count == 1 %>
-  <%= link_to "#{@project.tasks.count} task", project_tasks_path(@project) %>
+<%= link_to "#{@project.tasks.count} task", project_tasks_path(@project) %>
 <% else %>
-  <%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
+<%= link_to "#{@project.tasks.count} tasks", project_tasks_path(@project) %>
 <% end %>
 
 <br/>
 <%= link_to "#{@project.users.count} members", project_memberships_path(@project) %>
 
+
+<% if @membership.role == 'owner' %>
 <div class="well">
-    <h4>Delete</h4>
-    <div>
-      Deleting this project will also delete <%= @project.memberships.count %> memberships, <%= @project.tasks.count %> tasks and associated comments.
-    </div>
-    <%= link_to 'Delete', @project, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+  <h4>Delete</h4>
+  <div>
+    Deleting this project will also delete <%= @project.memberships.count %> memberships, <%= @project.tasks.count %> tasks and associated comments.
+  </div>
+  <%= link_to 'Delete', @project, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
+<% end %>
