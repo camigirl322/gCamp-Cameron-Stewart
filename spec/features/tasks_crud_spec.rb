@@ -15,6 +15,7 @@ describe 'User can CRUD tasks' do
     click_button 'Sign In'
 
     @project = Project.create(name: 'Sweet Project')
+    @project.user_ids = @user.id
     visit("/projects/#{@project.id}/tasks")
     expect(page).to have_content "No tasks for this project yet! "
   end
@@ -65,5 +66,15 @@ describe 'User can CRUD tasks' do
     expect(page).to have_content 'Tasks'
   end
 
+  it 'User can only access projects they are members of' do
+    @new_user = User.create(first_name: "Cami",
+                        last_name: "Stewbie",
+                        email: "cam@wee.com",
+                        password: "wee",
+                        password_confirmation: "wee")
+    @project.user_ids = @new_user.id
+    visit("/projects/#{@project.id}/tasks")
+    expect(page).to have_content "You do not have access to that project"
+  end
 
 end
