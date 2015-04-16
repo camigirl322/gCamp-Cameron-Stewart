@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :set_project, :owner
 
+
   def index
     @memberships = Membership.all
     @membership = Membership.new
@@ -39,7 +40,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     @membership.project_id = @project.id
     @membership.destroy
-    redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully removed"
+    redirect_to projects_path(@project), notice: "#{@membership.user.full_name} was successfully removed"
   end
 
 
@@ -53,7 +54,7 @@ class MembershipsController < ApplicationController
   end
 
   def owner
-    unless @project.users.include? current_user
+    unless @project.users.include?(current_user)
         redirect_to projects_path, alert: "You do not have access to that project"
     end
   end

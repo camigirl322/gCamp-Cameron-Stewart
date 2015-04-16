@@ -50,6 +50,11 @@
         <td>
           <%= membership.user.full_name %>
         </td>
+        <td>
+          <% if membership.user.id == current_user.id %>
+            <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden=true></span>'.html_safe, project_membership_path(@project, membership), method: :delete, data: { confirm: "Are you sure you want to delete that?"} %>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </tbody>
