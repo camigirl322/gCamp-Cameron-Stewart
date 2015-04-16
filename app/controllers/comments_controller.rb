@@ -28,16 +28,16 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:user_id, :task_id, :description)
   end
 
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
-
   def set_project
     @project = Project.find(params[:project_id])
   end
 
   def set_task
-    @task = Task.find(params[:task_id])
+    @task = @project.tasks
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 
 end
