@@ -29,15 +29,23 @@ describe 'User can CRUD tasks' do
   end
 
   it 'User can view task show page' do
-    @task = Task.create(description: 'Task 2', due_date: '2/16/14', complete: false)
-    visit("/projects/#{@project.id}/tasks/#{@task.id}")
-    expect(page).to have_content @task.description
+    click_link 'New Task'
+    fill_in 'Description', with: 'Task 1'
+    click_button 'Create Task'
+    expect(page).to have_content "Tasks for #{@project.name}"
+    click_link 'Task 1'
+    expect(page).to have_content 'Task 1'
+    expect(page).to have_content 'Comments'
   end
 
   it 'User can edit task' do
-    @task = Task.create(description: 'Task 2', due_date: '2/16/14', complete: false)
-    visit("/projects/#{@project.id}/tasks/#{@task.id}")
-    expect(page).to have_content @task.description
+    click_link 'New Task'
+    fill_in 'Description', with: 'Task 1'
+    click_button 'Create Task'
+    expect(page).to have_content "Tasks for #{@project.name}"
+    click_link 'Task 1'
+    expect(page).to have_content 'Task 1'
+    expect(page).to have_content 'Comments'
     click_link 'Edit'
     fill_in 'Description', with: 'Task 2 Update'
     click_button 'Update Task'
@@ -45,9 +53,13 @@ describe 'User can CRUD tasks' do
   end
 
   it 'User can delete task' do
-    @task = Task.create(description: 'Task 2', due_date: '2/16/14', complete: false)
-    visit("/projects/#{@project.id}/tasks/#{@task.id}")
-    expect(page).to have_content @task.description
+    click_link 'New Task'
+    fill_in 'Description', with: 'Task 1'
+    click_button 'Create Task'
+    expect(page).to have_content "Tasks for #{@project.name}"
+    click_link 'Task 1'
+    expect(page).to have_content 'Task 1'
+    expect(page).to have_content 'Comments'
     click_link 'Edit'
     click_link 'Delete Task'
     expect(page).to have_content 'Tasks'
