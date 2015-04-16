@@ -31,7 +31,9 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
-      if @membership.update(membership_params)
+      if @membership.role == "owner" && @project.memberships.where(role: 1).count == 1
+        redirect_to project_memberships_path(@project), alert: "Projects much have at least one owner"
+      elsif @membership.update(membership_params)
         redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated"
       end
   end
@@ -40,7 +42,11 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     @membership.project_id = @project.id
     @membership.destroy
-    redirect_to projects_path(@project), notice: "#{@membership.user.full_name} was successfully removed"
+    if current_user.owner?(@project)
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully removed"
+    else
+      redirect_to projects_path(@project), notice: "#{@membership.user.full_name} was successfully removed"
+    end
   end
 
 
