@@ -9,15 +9,17 @@ describe "user can CRUD projects" do
     fill_in 'Password', with: @user.password
     click_button 'Sign In'
     expect(page).to have_content "#{@user.first_name} #{@user.last_name}"
-    click_link 'Projects'
+    visit('/projects')
   end
 
   it 'User can see project index page' do
-    expect(page).to have_content 'Projects'
+    expect(page).to have_content 'New Project'
   end
 
   it "User can create project and view show page" do
+    within('.pull-right') do
       click_link 'New Project'
+    end
       expect(page).to have_content 'Create Project'
       fill_in 'Name', with: 'Awesome Project!'
       click_button 'Create Project'

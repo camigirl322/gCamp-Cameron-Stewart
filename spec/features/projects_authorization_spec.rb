@@ -9,7 +9,6 @@ describe 'user must be logged in to view projects' do
     fill_in 'Password', with: @user.password
     click_button 'Sign In'
     expect(page).to have_content "#{@user.first_name} #{@user.last_name}"
-    click_link 'Users'
   end
 
   it 'logged in users can access user page' do
