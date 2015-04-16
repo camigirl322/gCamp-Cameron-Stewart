@@ -10,7 +10,9 @@ describe 'User can CRUD users' do
     fill_in 'Password', with: @user.password
     click_button 'Sign In'
     expect(page).to have_content "#{@user.first_name} #{@user.last_name}"
-    click_link 'Users'
+    within('.col-md-4') do
+      click_link 'Users'
+    end
   end
 
   it 'User can see users index page' do
