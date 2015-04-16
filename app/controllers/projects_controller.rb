@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+    @membership = Membership.create(project_id: @project.id, user_id: current_user.id, role: 1)
   end
 
   def edit
