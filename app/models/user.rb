@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
      self.memberships.where(role: 0).map(&:project).include?(project)
    end
 
-   def co_member?(user)
-     memberships = self.projects.map(&:memberships).flatten
-     memberships.amp(&:user).include?(user)
-   end
+  
+
 end
