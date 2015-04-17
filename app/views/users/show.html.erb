@@ -8,7 +8,7 @@
     <li><a href="/users">Users</a></li>
     <li class="active"><%= @user.full_name %></li>
   </ol>
-  <% if @user == current_user %>
+  <% if @user == current_user|| current_user.admin? %>
     <div class="pull-right">
       <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-info" %>
     </div>
@@ -20,7 +20,7 @@
     <dd><%= @user.first_name %></dd>
     <dt>Last Name:</dt>
     <dd><%= @user.last_name %></dd>
-    <% if @user == current_user || current_user.projects.include?(@user.projects[0..5]) %> 
+    <% if @user == current_user || current_user.admin? || @user.projects.any? {|project| project.users.include?(current_user)  } %>
       <dt>Email:</dt>
       <dd><%= @user.email %></dd>
     <% end %>
