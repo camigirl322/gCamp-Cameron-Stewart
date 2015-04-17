@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-  before_filter :authorize, only: [:index, :show]
+  before_filter :authorize
 
   def index
     @users = User.all

@@ -11,7 +11,22 @@ class ApplicationController < ActionController::Base
 
   def authorize
      if current_user.nil?
+       store_location
        redirect_to signin_path, notice: "You must sign in"
      end
   end
+
+  # after_filter :store_location
+
+  def store_location
+    return unless request.get?
+    if (request.path != "/sign-in" &&
+        request.path != "/sign-up" &&
+        request.path != "/login" &&
+        request.path != "/sign-out" &&
+        !request.xhr?) # don't store ajax calls
+      session[:return_to] = request.fullpath
+    end
+  end
+
 end

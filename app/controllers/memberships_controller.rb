@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_action :set_project, :owner
+  before_action :authorize, :set_project, :owner
 
 
   def index

@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
+  before_filter :authorize
   before_action :check_membership, only: [:edit, :update, ]
-  before_filter :authorize, only: [:index, :show]
+
 
   def index
     @projects = current_user.projects
