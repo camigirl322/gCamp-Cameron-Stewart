@@ -37,8 +37,7 @@ describe 'User can CRUD users' do
     expect(page).to have_content @user.first_name
   end
 
-  it 'User can edit existing user' do
-    @user = User.create(first_name: 'Cameron1', last_name: 'Webster1', email: 'cameron@mail.com', password: '098', password_confirmation: '098')
+  it 'User can edit existing user only if they are that user' do
     visit("/users/#{@user.id}/edit")
     expect(page).to have_content 'Edit User'
     fill_in 'First name', with: 'CAM'
@@ -50,7 +49,6 @@ describe 'User can CRUD users' do
   end
 
   it "user can't edit email to be another user's email" do
-    @user = User.create(first_name: 'Cameron1', last_name: 'Webster2', email: 'cameron123@mail.com', password: '098', password_confirmation: '098')
     @other_user = User.create(first_name: 'Cameron2', last_name: 'Webster2', email: 'cameron567@mail.com', password: '098', password_confirmation: '098')
     visit("/users/#{@user.id}/edit")
     expect(page).to have_content 'Edit User'
@@ -60,9 +58,14 @@ describe 'User can CRUD users' do
   end
 
   it 'User can delete existing user' do
-    @user = User.create(first_name: 'Cameron', last_name: 'Webster', email: 'cameron@mail.com', password: '098', password_confirmation: '098')
     visit("/users/#{@user.id}/edit")
     click_link 'Delete User'
-    expect(page).to have_content 'User was successfully deleted'
+    current_path.should eq('/sign-in')
+  end
+
+  it "User can't edit another user" do
+    @other_user = User.create(first_name: 'Cameron2', last_name: 'Webster2', email: 'cameron567@mail.com', password: '098', password_confirmation: '098')
+    visit("/users/#{@other_user.id}/edit")
+    expect(page).to have_content "Whoa there!"
   end
 end
