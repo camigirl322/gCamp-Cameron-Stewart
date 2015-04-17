@@ -59,7 +59,7 @@ class MembershipsController < ApplicationController
   end
 
   def owner
-    unless @project.users.include?(current_user)
+    unless current_user.admin? || @project.users.include?(current_user)
         redirect_to projects_path, alert: "You do not have access to that project"
     end
   end

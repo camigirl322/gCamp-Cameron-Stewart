@@ -15,7 +15,7 @@
 </div>
 <%= render partial: "/shared/errors", locals: {object: @membership} %>
 
-<% if current_user.owner?(@project) %>
+<% if current_user.owner?(@project) || current_user.admin? %>
 
 <div class="well form-inline">
 

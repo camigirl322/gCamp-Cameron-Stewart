@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authorize
-  before_action :check_membership, only: [:edit, :update, ]
+  before_action :owner, only: [:edit, :update, ]
 
 
   def index
@@ -9,10 +9,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    unless @project.users.include? current_user
+    unless current_user.admin? || @project.users.include?(current_user )
         redirect_to projects_path, alert: "You do not have access to that project"
     end
-    # @membership = Membership.where(user_id: current_user.id)[0]
   end
 
   def new
@@ -68,16 +67,9 @@ class ProjectsController < ApplicationController
   end
 
   def owner
-    unless @project.users.include? current_user
+    unless current_user.admin? || current_user.owner?(@project) || @project.users.include?(current_user)
         redirect_to projects_path, alert: "You do not have access to that project"
     end
   end
 
-
-  def check_membership
-    @membership = Membership.where(user_id: current_user.id)[0]
-    unless @membership.role == 'owner'
-      redirect_to projects_path, alert: "You do not have access to that project"
-    end
-  end
 end

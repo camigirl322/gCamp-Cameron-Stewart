@@ -30,14 +30,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless @user.id == current_user.id
+    unless @user.id == current_user.id || current_user.admin?
       render_404
     end
   end
 
   def update
     @user = User.find(params[:id])
-    if @user == current_user
+    if @user == current_user || current_user.admin?
       respond_to do |format|
         if @user.update(user_params)
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
