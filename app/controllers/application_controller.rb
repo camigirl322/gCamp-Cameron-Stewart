@@ -29,4 +29,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_role
+    if current_user != nil
+      @current_role = User.find(params[:user_id]).admin
+    else
+      @current_role = "visitor"
+    end
+  end
+  helper_method :current_role
+
+
+
 end
