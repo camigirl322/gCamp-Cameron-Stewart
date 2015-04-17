@@ -20,7 +20,7 @@
     <dd><%= @user.first_name %></dd>
     <dt>Last Name:</dt>
     <dd><%= @user.last_name %></dd>
-    <% if @user == current_user || current_user.projects.include?(@user.projects[0])%> 
+    <% if @user == current_user || current_user.projects.include?(@user.projects)%> 
       <dt>Email:</dt>
       <dd><%= @user.email %></dd>
     <% end %>
