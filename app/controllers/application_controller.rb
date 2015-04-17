@@ -38,15 +38,4 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_role
 
-
-  # def co_member?(user)
-  #   if current_user.projects.count > 0
-  #    current_user.projects.each do |project|
-  #      project.users.include?(user)
-  #    end
-  #  end
-  # end
-  #
-  # helper_method :co_member?
-
 end

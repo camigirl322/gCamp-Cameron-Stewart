@@ -54,17 +54,19 @@ class TasksController < ApplicationController
 
   private
 
+    def set_task
+      @task = Task.find(params[:id])
+    end
+
     def task_params
       params.require(:task).permit(:description, :due_date, :complete, :project_id)
     end
+
 
     def set_project
       @project = Project.find(params[:project_id])
     end
 
-    def set_task
-      @task = @project.tasks.find(params[:id])
-    end
 
     def owner
       unless @project.users.include? current_user
