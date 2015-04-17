@@ -20,7 +20,7 @@
     <tr>
       <td><%= link_to  user.full_name, user %></td>
       <td class="mail_to">
-        <% if user == current_user %>
+        <% if user == current_user || current_user.projects.include?(user.projects[0]) %>
         <%= user.email %>
         <% end %>
       </td>

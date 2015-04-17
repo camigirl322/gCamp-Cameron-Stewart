@@ -1,52 +1,60 @@
 <%= form_for(@user, html: {:class => "form-horizontal"})  do |f| %>
 <%= render partial: "/shared/errors", locals: {object: @user} %>
 
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :first_name, :class => 'control-label col-md-2' %>
-      <div class="form-controls col-md-6">
-        <%= f.text_field :first_name, :class => 'form-control'%>
-      </div>
+<div class="form-group">
+  <div class="field">
+    <%= f.label :first_name, :class => 'control-label col-md-2' %>
+    <div class="form-controls col-md-6">
+      <%= f.text_field :first_name, :class => 'form-control'%>
     </div>
   </div>
+</div>
 
+<div class="form-group">
+  <%= f.label :last_name, :class => 'control-label col-md-2' %>
+  <div class="col-md-6">
+    <%= f.text_field :last_name, :class => 'form-control' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :email, :class => 'control-label col-md-2' %>
+  <div class="col-md-6">
+    <%= f.email_field :email, :class => 'form-control' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :password, :class => 'control-label col-md-2' %>
+  <div class="col-md-6">
+    <%= f.password_field :password, :class => 'form-control' %>
+  </div>
+</div>
+<div class="form-group">
+  <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
+  <div class="col-md-6">
+    <%= f.password_field :password_confirmation, :class => 'form-control' %>
+  </div>
+</div>
+<% if current_user.admin? %>
   <div class="form-group">
-    <%= f.label :last_name, :class => 'control-label col-md-2' %>
+    <%= f.label :admin, :class => 'control-label col-md-2' %>
     <div class="col-md-6">
-      <%= f.text_field :last_name, :class => 'form-control' %>
+      <%= f.check_box :admin, {}, "admin", false %>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :email, :class => 'control-label col-md-2' %>
-    <div class="col-md-6">
-      <%= f.email_field :email, :class => 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, :class => 'control-label col-md-2' %>
-    <div class="col-md-6">
-      <%= f.password_field :password, :class => 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation, :class => 'control-label col-md-2' %>
-    <div class="col-md-6">
-      <%= f.password_field :password_confirmation, :class => 'form-control' %>
-    </div>
-  </div>
+<% end %>
 
 
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-4">
-      <% if @user.id == nil %>
-        <%= f.submit 'Create User', :class => 'btn btn-primary' %>
-        <a class="btn btn-default" href="/users">Cancel</a>
-      <% else %>
-        <%= f.submit 'Update User', :class => 'btn btn-primary' %>
-        <%= link_to 'Delete User', @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-        <a class="btn btn-default" href="/users">Cancel</a>
-      <% end %>
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-4">
+    <% if @user.id == nil %>
+    <%= f.submit 'Create User', :class => 'btn btn-primary' %>
+    <a class="btn btn-default" href="/users">Cancel</a>
+    <% else %>
+    <%= f.submit 'Update User', :class => 'btn btn-primary' %>
+    <%= link_to 'Delete User', @user, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <a class="btn btn-default" href="/users">Cancel</a>
+    <% end %>
 
-    </div>
   </div>
+</div>
 <% end %>

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
 
+  enum admin: [:user, :admin]
 
    def full_name
      "#{first_name} #{last_name}"
