@@ -57,4 +57,5 @@ describe "user can CRUD projects" do
       click_link 'Delete'
       expect(page).to have_content 'Project was successfully deleted'
   end
+
 end
