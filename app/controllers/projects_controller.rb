@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authorize
-  before_action :owner, only: [:edit, :update, ]
+  before_action :owner, only: [:edit, :update]
 
 
   def index
@@ -39,13 +39,9 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    unless @project.users.include? current_user
-        redirect_to projects_path, alert: "You do not have access to that project"
-    end
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
