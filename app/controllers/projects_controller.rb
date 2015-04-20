@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects = current_user.projects
+    if current_user.admin?
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def show

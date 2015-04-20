@@ -12,10 +12,9 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = Membership.new
+    @membership = Membership.create(membership_params)
     @membership.user_id = params[:membership][:user_id]
     @membership.project_id = @project.id
-
     respond_to do |format|
       if @membership.save
         format.html { redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was successfully added" }
