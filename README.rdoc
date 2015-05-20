@@ -1,6 +1,6 @@
 == README
 
-gCamp Project
+TaskIt Project
 
 * Ruby version
   2.2.0

@@ -68,6 +68,6 @@ describe "User Permissions" do
   it "If a user deletes themself, they get redirected to sign-in path" do
     visit("/users/#{@user.id}/edit")
     click_link "Delete User"
-    expect(page).to have_content "Sign into gCamp"
+    expect(page).to have_content "Sign into TaskIt"
   end
 end

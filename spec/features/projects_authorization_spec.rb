@@ -18,6 +18,6 @@ describe 'user must be logged in to view projects' do
   it 'user cant access users until logged in' do
     click_link 'Sign Out'
     visit("/projects")
-    expect(page).to have_content "Sign into gCamp"
+    expect(page).to have_content "Sign into TaskIt"
   end
 end
